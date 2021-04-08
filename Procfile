@@ -1,1 +1,1 @@
-web: gunicorn myshop-heroku-project.wsgi --log-file -
+web: gunicorn shop.wsgi --log-file -
