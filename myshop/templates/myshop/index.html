@@ -216,8 +216,8 @@
                                 </div>
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="{% if product.image %}{{product.image.url}}{% else %}{% static "img/noimage.png" %}{% endif %}" alt="Product Image">
+                                <a href="/product/{{product.slug}}">
+                                    <img style="height: 200px; width: 300px;" src="{% if product.image %}{{product.image.url}}{% else %}{% static "img/noimage.png" %}{% endif %}" alt="Product Image">
                                 </a>
                             </div>
                             <form action="{% url "cart:cart_add" product.id %}" method="post">
@@ -275,8 +275,8 @@
                                 </div>
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="{% if recent.image %}{{recent.image.url}}{% else %}{% static "img/noimage.png" %}{% endif %}" alt="Product Image">
+                                <a href="/product/{{recent.slug}}">
+                                    <img style="height: 200px; width: 300px;" src="{% if recent.image %}{{recent.image.url}}{% else %}{% static "img/noimage.png" %}{% endif %}" alt="Product Image">
                                 </a>
                                 <form action="{% url "cart:cart_add" recent.id %}" method="post">
                             </div>
