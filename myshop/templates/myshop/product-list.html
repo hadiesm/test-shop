@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}All Products{% endblock %}
+{% block content %}
+       <!-- Breadcrumb Start -->
+<div class="breadcrumb-wrap" xmlns="http://www.w3.org/1999/html">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/products">Products</a></li>
+                    <li class="breadcrumb-item active">Product List</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+        
+        <!-- Product List Start -->
+        <div class="product-view">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="product-view-top">
+                                    <div class="row">
+                                        <div class="col-md-4">
+
+                                        </div>
+                                        <div class="col-md-4">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if not category_slug %}
+                            {% for product in product_list %}
+                            <div class="col-md-4">
+                                <div class="product-item">
+                                    <div class="product-title">
+                                        <a href="/product/{{product.slug}}">{{product.name}}</a>
+                                        <div class="ratting">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                    <div class="product-image">
+                                        <a href="product-detail.html">
+                                            <img src="{% if product.image %}{{product.image.url}}{% else %}{% static "img/noimage.png" %}{% endif %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    {{cart_add_form}}
+                                    <div class="product-price">
+                                        <h3><span>$</span>{{product.price}}</h3>
+                                        <button type="submit" class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</button>
+                                    </div>
+                                        {% csrf_token %}
+                                        </form>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% elif category_slug %}
+                            {% for product in product_list %}
+                            <div class="col-md-4">
+                                <div class="product-item">
+                                    <div class="product-title">
+                                        <a href="/product/{{product.slug}}">{{product.name}}</a>
+                                        <div class="ratting">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                    <div class="product-image">
+                                        <a href="product-detail.html">
+                                            <img src="{% if product.image %}{{product.image.url}}{% else %}{% static "img/noimage.png" %}{% endif %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    {{cart_add_form}}
+                                    <div class="product-price">
+                                        <h3><span>$</span>{{product.price}}</h3>
+                                        <button type="submit" class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</button>
+                                    </div>
+                                    {% csrf_token %}
+                                    </form>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>           
+                    
+                    <!-- Side Bar Start -->
+                    <div class="col-lg-4 sidebar">
+                        <div class="sidebar-widget category">
+                            <h2 class="title">Category</h2>
+                            <nav class="navbar bg-light">
+                                <ul class="navbar-nav">
+                                    {% for cat in categories %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{cat.slug}}"><i class="fa fa-plus-square"></i>{{cat.name}}</a>
+                                    </li>
+                                   {% endfor %}
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="sidebar-widget widget-slider">
+                            <div class="sidebar-slider normal-slider">
+                                {% for product in products %}
+                                <div class="product-item">
+                                    <div class="product-title">
+                                        <a href="/product/{{product.slug}}">{{product.name}}</a>
+                                        <div class="ratting">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="product-image">
+                                        <a href="product-detail.html">
+                                            <img src="{% if product.image %}{{product.image.url}}{% else %}{% static "img/noimage.png" %}{% endif %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="product-price">
+                                        <h3><span>$</span>{{product.price}}</h3>
+                                        <a class="btn" href="/product/{{product.slug}}"><i class=""></i>Details</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Side Bar End -->
+                </div>
+            </div>
+        </div>
+        <!-- Product List End -->  
+        
+        <!-- Brand Start -->
+        <div class="brand">
+            <div class="container-fluid">
+                <div class="brand-slider">
+                    <div class="brand-item"><img src="img/brand-1.png" alt=""></div>
+                    <div class="brand-item"><img src="img/brand-2.png" alt=""></div>
+                    <div class="brand-item"><img src="img/brand-3.png" alt=""></div>
+                    <div class="brand-item"><img src="img/brand-4.png" alt=""></div>
+                    <div class="brand-item"><img src="img/brand-5.png" alt=""></div>
+                    <div class="brand-item"><img src="img/brand-6.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+        <!-- Brand End -->
+{% endblock %}

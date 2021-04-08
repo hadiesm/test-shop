@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/products">Products</a></li>
+                    <li class="breadcrumb-item active">Register</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+        
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">    
+                        <div class="register-form">
+                            <form method="post">
+                                {% if form.errors %}
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                    {{error|escape}}
+                                    {% endfor %}
+                                {% endfor %}
+                                {% for error in form.non_field_errors %}
+                                    {{error|escape}}
+                                {% endfor %}
+                                {% endif %}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>First Name</label>
+                                    {{form.username}}
+                                </div>
+                                <div class="col-md-6">
+                                    <label>E-mail</label>
+                                    {{form.email}}
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Password</label>
+                                    {{form.password1}}
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Retype Password</label>
+                                    {{form.password2}}
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn" type="submit">Register</button>
+                                </div>
+                            </div>
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                    </div>
+           </div>
+            </div>
+        </div>
+        <!-- Login End -->
+  {% endblock %}
